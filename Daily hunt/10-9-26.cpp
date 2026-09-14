@@ -2,6 +2,18 @@
 #include <utility>
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode(int x) {
+        val = x;
+        left = NULL;
+        right = NULL;
+    }
+};
+
 class Solution {
 public:
     int ans = 0;
@@ -27,3 +39,26 @@ public:
         return ans;
     }
 };
+
+int main() {
+    //       4
+    //      / \
+    //     8   5
+    //    / \   \
+    //   0   1   6
+
+    TreeNode* root = new TreeNode(4);
+    root->left = new TreeNode(8);
+    root->right = new TreeNode(5);
+
+    root->left->left = new TreeNode(0);
+    root->left->right = new TreeNode(1);
+
+    root->right->right = new TreeNode(6);
+
+    Solution obj;
+
+    cout << obj.averageOfSubtree(root) << endl;
+
+    return 0;
+}
