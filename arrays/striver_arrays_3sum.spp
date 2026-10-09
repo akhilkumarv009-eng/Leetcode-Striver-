@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+
+        set <vector<int> > st;
+
+        int n = nums.size();
+
+        sort(nums.begin(),nums.end());
+
+        for(int k = 0 ; k < n ;k++)
+        {
+            int target = 0 - nums[k];
+
+            int i = k+1;
+
+            int j = n - 1;
+
+            while(i < j)
+            {
+                if( i != k && j != k )
+                {
+                    
+                    if(nums[i] + nums[j] == target)
+                    {
+                       st.insert({nums[i],nums[j],nums[k]});
+                       i++;
+                       j--;
+                    }
+                
+                     else if(nums[i] + nums[j] > target)
+                    {
+                       j--;
+                    }
+                     else
+                    {
+                      i++;
+                    }
+                
+
+                }
+                else if(i == k)
+                {
+                    i++;
+                }
+                else if( j == k)
+                {
+                    j--;
+                }
+            }
+
+
+        }
+        vector<vector<int>> ans;
+        for(auto it : st)
+        {
+            ans.push_back(it);
+        }
+        return ans;
+        
+    }
+};
